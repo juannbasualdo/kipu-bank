@@ -1,0 +1,325 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_limiteRetiro",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_topeBanco",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "EnvioETHFallido",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "intentado",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "limite",
+						"type": "uint256"
+					}
+				],
+				"name": "LimiteRetiroSuperado",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MontoCero",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "saldo",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "requerido",
+						"type": "uint256"
+					}
+				],
+				"name": "SaldoInsuficiente",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "intentado",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tope",
+						"type": "uint256"
+					}
+				],
+				"name": "TopeDepositosSuperado",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "cuenta",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "monto",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "nuevoSaldo",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposito",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "cuenta",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "monto",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "nuevoSaldo",
+						"type": "uint256"
+					}
+				],
+				"name": "Retiro",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "contadorDepositos",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "contadorRetiros",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "depositar",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "limiteRetiro",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "obtenerSaldo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "monto",
+						"type": "uint256"
+					}
+				],
+				"name": "retirar",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "topeBanco",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalDepositado",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"events": {
+				"Deposito(address,uint256,uint256)": {
+					"params": {
+						"cuenta": "Dirección del usuario que deposita.",
+						"monto": "Monto depositado en wei.",
+						"nuevoSaldo": "Nuevo saldo del usuario."
+					}
+				},
+				"Retiro(address,uint256,uint256)": {
+					"params": {
+						"cuenta": "Dirección del usuario que retira.",
+						"monto": "Monto retirado en wei.",
+						"nuevoSaldo": "Nuevo saldo del usuario."
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"retirar(uint256)": {
+					"params": {
+						"monto": "Monto a retirar (wei)."
+					}
+				}
+			},
+			"title": "KipuBanco",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"Deposito(address,uint256,uint256)": {
+					"notice": "Se emite al depositar ETH."
+				},
+				"Retiro(address,uint256,uint256)": {
+					"notice": "Se emite al retirar ETH."
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"contadorDepositos()": {
+					"notice": "Número total de depósitos."
+				},
+				"contadorRetiros()": {
+					"notice": "Número total de retiros."
+				},
+				"depositar()": {
+					"notice": "Deposita ETH en tu bóveda personal."
+				},
+				"limiteRetiro()": {
+					"notice": "Límite máximo por retiro (wei)."
+				},
+				"obtenerSaldo()": {
+					"notice": "Devuelve tu saldo en la bóveda."
+				},
+				"retirar(uint256)": {
+					"notice": "Retira ETH de tu bóveda personal."
+				},
+				"topeBanco()": {
+					"notice": "Tope global de depósitos (wei)."
+				},
+				"totalDepositado()": {
+					"notice": "Total depositado en el contrato."
+				}
+			},
+			"notice": "Bóvedas personales de ETH con límite por transacción y tope global.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/kipu-bank.sol": "KipuBanco"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/kipu-bank.sol": {
+			"keccak256": "0x8a8bcae322a52341a2f3c12c15d8ecca6671dddcadc5e2e37f5583afd815e779",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b65c4b0aab6a01e4f6d6325fbbcaab89f282ec0cc066dac13d8bdbd7126980bc",
+				"dweb:/ipfs/QmYsmJ9ymY5EpP24JDDcwkY3U7oAAZb4dE9qKGVJiXothb"
+			]
+		}
+	},
+	"version": 1
+}

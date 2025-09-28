@@ -1,0 +1,389 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_withdrawLimit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_bankCap",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "attempted",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cap",
+						"type": "uint256"
+					}
+				],
+				"name": "DepositCapExceeded",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "EthTransferFailed",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "needed",
+						"type": "uint256"
+					}
+				],
+				"name": "InsufficientBalance",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "attempted",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "limit",
+						"type": "uint256"
+					}
+				],
+				"name": "WithdrawLimitExceeded",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ZeroAmount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newBalance",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposit",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newBalance",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdraw",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "bankCap",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "deposit",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "depositCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalDeposited",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdrawCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdrawLimit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"DepositCapExceeded(uint256,uint256)": [
+					{
+						"params": {
+							"attempted": "Nuevo total intentado.",
+							"cap": "Límite global."
+						}
+					}
+				],
+				"InsufficientBalance(uint256,uint256)": [
+					{
+						"params": {
+							"balance": "Saldo disponible.",
+							"needed": "Cantidad pedida."
+						}
+					}
+				],
+				"WithdrawLimitExceeded(uint256,uint256)": [
+					{
+						"params": {
+							"attempted": "Cantidad pedida.",
+							"limit": "Límite por transacción."
+						}
+					}
+				]
+			},
+			"events": {
+				"Deposit(address,uint256,uint256)": {
+					"params": {
+						"account": "Dirección del usuario que deposita.",
+						"amount": "Monto depositado en wei.",
+						"newBalance": "Nuevo saldo del usuario."
+					}
+				},
+				"Withdraw(address,uint256,uint256)": {
+					"params": {
+						"account": "Direccion del usuario que retira.",
+						"amount": "Monto retirado en wei.",
+						"newBalance": "Nuevo saldo del usuario."
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"params": {
+						"_bankCap": "Tope global de depósitos (wei).",
+						"_withdrawLimit": "Límite de retiro por transacción (wei)."
+					}
+				},
+				"getBalance()": {
+					"returns": {
+						"balance": "Saldo de quien llama a la funcion (wei)."
+					}
+				},
+				"withdraw(uint256)": {
+					"params": {
+						"amount": "Monto a retirar (wei)"
+					}
+				}
+			},
+			"title": "KipuBank",
+			"version": 1
+		},
+		"userdoc": {
+			"errors": {
+				"DepositCapExceeded(uint256,uint256)": [
+					{
+						"notice": "Supera el tope global de depósitos."
+					}
+				],
+				"EthTransferFailed()": [
+					{
+						"notice": "Falla en enviar ETH (llamada nativa)."
+					}
+				],
+				"InsufficientBalance(uint256,uint256)": [
+					{
+						"notice": "Saldo insuficiente."
+					}
+				],
+				"WithdrawLimitExceeded(uint256,uint256)": [
+					{
+						"notice": "Supera el límite por retiro."
+					}
+				],
+				"ZeroAmount()": [
+					{
+						"notice": "Monto debe ser > 0."
+					}
+				]
+			},
+			"events": {
+				"Deposit(address,uint256,uint256)": {
+					"notice": "Se emite al depositar ETH."
+				},
+				"Withdraw(address,uint256,uint256)": {
+					"notice": "Se emite al retirar ETH."
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"bankCap()": {
+					"notice": "Tope global de depósitos (wei)."
+				},
+				"deposit()": {
+					"notice": "Deposita ETH en tu bóveda personal."
+				},
+				"depositCount()": {
+					"notice": "Número total de depósitos."
+				},
+				"getBalance()": {
+					"notice": "Devuelve TU saldo en la bóveda."
+				},
+				"totalDeposited()": {
+					"notice": "Total depositado en el contrato."
+				},
+				"withdraw(uint256)": {
+					"notice": "Retira ETH de tu bóveda personal."
+				},
+				"withdrawCount()": {
+					"notice": "Número total de retiros."
+				},
+				"withdrawLimit()": {
+					"notice": "Límite máximo por retiro (wei)."
+				}
+			},
+			"notice": "Bovedas personales de ETH con límite por transaccion y tope global",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/kipu-bank.sol": "KipuBank"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/kipu-bank.sol": {
+			"keccak256": "0x9837392b0b77f45f8d2d96778e1f841204abc645fc2df7753cdf52ceec63d349",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://84294fed011e5e95250c424335e40a2ce04518a28e0daa6a5fc7e71b738b4777",
+				"dweb:/ipfs/QmaGFHYcfc7recJp4rC6nxf9biepBE1ofZcmtdvTSBh3gM"
+			]
+		}
+	},
+	"version": 1
+}
